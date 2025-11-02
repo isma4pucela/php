@@ -11,3 +11,4 @@
     }
 
     echo "La suma de las posiciones pares es $suma."
+?>

@@ -15,6 +15,4 @@
     } else {
         echo "El array no está ordenado.";
     }
-
 ?>
-
