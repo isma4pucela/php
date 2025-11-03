@@ -2,30 +2,31 @@
     <body>
         <form method="post" action="ej2.php">
             <fieldset>
-                <legend>
-                    Nombre <input type="text" name="nombre"/><br>
-                    Apellidos <input type="text" name="apellido"/><br>
+                <legend>Datos personales</legend>
+                <p>Nombre <input type="text" name="nombre"/><br></p>
+                <p>Apellidos <input type="text" name="apellido"/><br></p>
             
-                    Dirección<br><select>
-                        <option value="valladolid">Valladolid</option>
-                        <option value="madrid">Madrid</option>
-                        <option value="barcelona">Barcelona</option>
-                        <option value="sevilla">Sevilla</option>
-                    </select>
+                <p>Dirección<br><select>
+                    <option value="valladolid">Valladolid</option>
+                    <option value="madrid">Madrid</option>
+                    <option value="barcelona">Barcelona</option>
+                    <option value="sevilla">Sevilla</option>
+                </select></p>
             
-                    Sexo<br>
-                        <input type="radio" name="sexo" value="hombre"/>Hombre
-                        <input type="radio" name="sexo" value="mujer"/>Mujer
-                        <input type="radio" name="sexo" value="ninguno" checked="checked"/>Prefiero no decirlo        
+                <p>Sexo<br>
+                    <input type="radio" name="sexo" value="hombre"/>Hombre
+                    <input type="radio" name="sexo" value="mujer"/>Mujer
+                    <input type="radio" name="sexo" value="ninguno" checked="checked"/>Prefiero no decirlo
+                </p>
 
-                    Títulos académicos<br>
-                        <input type="checkbox" name="titulos" value="eso"/>ESO
-                        <input type="checkbox" name="titulos" value="bachillerato"/>Bachillerato
-                        <input type="checkbox" name="titulos" value="grmedio"/>Grado Medio
+                <p>Títulos académicos<br>
+                    <input type="checkbox" name="titulos" value="eso"/>ESO
+                    <input type="checkbox" name="titulos" value="bachillerato"/>Bachillerato
+                    <input type="checkbox" name="titulos" value="grmedio"/>Grado Medio
+                </p>
 
-                    <input type="submit" name="enviar" value="enviar"/>Enviar
-                    <input type="reset" name="borrar" value="borrar"/>Borrar
-                </legend>
+                <p><input type="submit" name="enviar" value="enviar"/>Enviar</p>
+                <p><input type="reset" name="borrar" value="borrar"/>Borrar</p>
             </fieldset>
         </form>
     </body>
