@@ -14,7 +14,7 @@ if ($mysqli->connect_errno) {
 }
 Else {
    // Ejecución de la consulta  
-   $mysqli->query("INSERT INTO Persona (id_persona, Nombre, Apellidos, Edad) VALUES   (8,'Nadia','Gonzalez Perez',31)");  
+   $mysqli->query("INSERT INTO Persona (id_persona, Nombre, Apellidos, Edad) VALUES (1,'Rodrigo','Goles',22)");  
   
 	  echo "ha sido dado de alta <br> ";
  
