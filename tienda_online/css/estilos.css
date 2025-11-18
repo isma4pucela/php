@@ -1,23 +1,19 @@
 :root {
+    /* Colores */
     --color-primario: #1a1a1a;
     --color-secundario: #ffdd00; 
     --color-tercero: #ffffff;
-    
     --color-texto: #1a1a1a;
     --color-texto-gris: #666666;
-    
     --color-fondo: #ffffff;
     --color-fondo-claro: #f5f5f5;
+    --color-exito: #10b981;           
+    --color-error: #ef4444;          
+    --color-advertencia: #f59e0b;
+    --color-borde: #e5e5e5;          
     
-    --color-exito: #10b981;           /* Verde */
-    --color-error: #ef4444;           /* Rojo */
-    --color-advertencia: #f59e0b;     /* Naranja */
-    
-    --color-borde: #e5e5e5;           /* Gris muy claro */
-    
+    /* Tipografía */
     --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-    /* Tamaños de tipografía */
     --tamaño-base: 1rem;
     --tamaño-h1: 3rem;
     --tamaño-h2: 2rem;
@@ -166,7 +162,7 @@ a:hover {
    ============================================= */
 
 .navbar {
-    background-color: #ffdd00;
+    background-color: var(--color-secundario);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -234,6 +230,84 @@ a:hover {
     background-color: var(--color-primario);
 }
 
+/* Submenu desplegable */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-top: none;
+    list-style: none;
+    min-width: 200px;
+    box-shadow: var(--sombra-lg);
+    z-index: 1000;
+}
+
+.nav-menu li:hover .submenu {
+    display: flex;
+    flex-direction: column;
+}
+
+.submenu li {
+    margin: 0;
+}
+
+.submenu a {
+    display: block;
+    padding: var(--espaciado-md) var(--espaciado-lg);
+    color: var(--color-texto);
+    border-bottom: 1px solid var(--color-borde);
+    transition: var(--transicion);
+}
+
+.submenu a:last-child {
+    border-bottom: none;
+}
+
+.submenu a:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-texto);
+    margin: 5px 0;
+    transition: var(--transicion);
+}
+
+/* Checkbox trick - ocultar checkbox */
+.menu-toggle {
+    display: none;
+}
+
+/* Cuando el checkbox está marcado, aplicar estilos */
+.menu-toggle:checked ~ .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.menu-toggle:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle:checked ~ .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.menu-toggle:checked ~ .nav-menu {
+    left: 0;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -252,7 +326,7 @@ a:hover {
    HERO SECTION
    ============================================= */
 
-.hero {
+.banner {
     background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('../imagenes/campo.png') center/cover no-repeat;
     color: white;
     padding: 6rem var(--espaciado-md);
@@ -263,13 +337,13 @@ a:hover {
     justify-content: center;
 }
 
-.hero-content h1 {
+.banner-texto h1 {
     color: white;
     font-size: 3rem;
     margin-bottom: var(--espaciado-md);
 }
 
-.hero-content p {
+.banner-texto p {
     color: rgba(255, 255, 255, 0.9);
     font-size: 1.25rem;
     margin-bottom: var(--espaciado-xl);
@@ -314,6 +388,15 @@ a:hover {
 .categoria-card h3 {
     color: var(--color-primario);
     margin-bottom: var(--espaciado-sm);
+}
+
+.categoria-imagen {
+    width: 100%;
+    max-width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: var(--espaciado-md);
 }
 
 /* =============================================
@@ -400,7 +483,7 @@ a:hover {
 }
 
 .star {
-    color: #fbbf24;
+    color: var(--color-advertencia);
     font-size: 1.25rem;
 }
 
@@ -1028,23 +1111,48 @@ a:hover {
 
     /* Navegación */
     .navbar .container {
-        flex-direction: column;
-        gap: var(--espaciado-md);
+        position: relative;
     }
 
     .nav-menu {
+        position: fixed;
+        top: 75px;
+        left: -100%;
         flex-direction: column;
+        background-color: var(--color-fondo);
         width: 100%;
-        gap: var(--espaciado-md);
-        display: none;
+        text-align: center;
+        transition: left 0.3s ease;
+        box-shadow: var(--sombra-lg);
+        padding: var(--espaciado-lg) 0;
+        z-index: 100;
     }
 
-    .nav-menu.activo {
-        display: flex;
+    .nav-menu li {
+        margin: var(--espaciado-md) 0;
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: var(--espaciado-md);
+    }
+
+    .submenu {
+        position: static;
+        display: none !important;
+        border: none;
+        box-shadow: none;
+        background-color: var(--color-fondo-claro);
+        margin-top: var(--espaciado-md);
+    }
+
+    .nav-menu li:hover .submenu {
+        display: flex !important;
     }
 
     .hamburger {
         display: flex;
+        margin-right: var(--espaciado-md);
     }
 
     /* Hero */

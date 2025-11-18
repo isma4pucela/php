@@ -13,23 +13,31 @@
                 <a href="index.html" class="logo">Tienda Oficial CD Rioseco</a>
                 <img src="imagenes/rioseco.png" alt="Escudo CD Rioseco" class="logo-imagen" height="65px" width="65px">
             </div>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">Inicio</a></li>
-                <li><a href="productos.html" class="nav-link">Productos</a></li>
+                <li><a href="productos.html" class="nav-link">Productos</a>
+                    <ul class="submenu">
+                        <li><a href="productos.html?categoria=partido">Ropa de partido</a></li>
+                        <li><a href="productos.html?categoria=calle">Ropa de calle</a></li>
+                        <li><a href="productos.html?categoria=accesorios">Accesorios</a></li>
+                    </ul>
+                </li>
                 <li><a href="login.html" class="nav-link">Iniciar Sesión</a></li>
                 <li><a href="registro.html" class="nav-link btn-registro">Registrarse</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+        </div>
+    </nav>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
+    <section class="banner">
+        <div class="banner-texto">
             <h1>Bienvenido a la Tienda Oficial CD Rioseco</h1>
             <p>Descubre la mejor ropa y accesorios oficiales de tu equipo</p>
         </div>
@@ -40,18 +48,19 @@
             <h2>Nuestras Categorías</h2>
             <div class="categorias-grid">
                 <div class="categoria-card">
+                    <img src="imagenes/camiseta.png" class="categoria-imagen">
                     <h3>Ropa de partido</h3>
-                    <img src="" class="categoria-imagen">
+                    <p>Equipaciones oficiales del club</p>
                 </div>
                 <div class="categoria-card">
-                    <div class="categoria-icon">🎧</div>
-                    <h3>Ropa de entrenamiento</h3>
-                    <p>Auriculares, cables y más accesorios</p>
-                </div>
-                <div class="categoria-card">
-                    <div class="categoria-icon">⌚</div>
+                    <img src="imagenes/calle.png" class="categoria-imagen">
                     <h3>Ropa de calle</h3>
-                    <p>Smartwatches y pulseras inteligentes</p>
+                    <p>Cazadora, chándal y más</p>
+                </div>
+                <div class="categoria-card">
+                    <img src="imagenes/accesorios.png" class="categoria-imagen">
+                    <h3>Accesorios</h3>
+                    <p>Mochilas y otros accesorios</p>
                 </div>
             </div>
         </div>
