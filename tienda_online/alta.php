@@ -1,11 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es"> 
-   <head>  
-      <title>Dar de alta usuario</title> 
-      <meta http-equiv="Content-Type" content="text/html; 
-	charset=iso-8859-1" />  
-   </head>  
-<body>  
-<?php  
+ <?php  
     include_once "conexion.php";
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -37,5 +30,3 @@
 <?php
     }
 ?>
-</body>  
-</html>
