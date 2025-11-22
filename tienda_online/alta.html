@@ -7,16 +7,30 @@
         <link rel="stylesheet" href="css/estilos.css">
     </head>
     <body class="registro-page">
-        <div class="registro-container">
-            <h1>Crear Cuenta</h1>
-            <p>Únete a nuestra tienda</p>
-            
-            <form method="post" action="alta.php">
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a href="index.html" class="logo">Tienda Oficial CD Rioseco</a>
+                    <img src="imagenes/rioseco.png" alt="Escudo CD Rioseco" class="logo-imagen" height="65px" width="65px">
                 </div>
-
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <ul class="nav-menu">
+                    <li><a href="inicio.html" class="nav-link active">Inicio</a></li>
+                    <li><a href="productos.html" class="nav-link">Productos</a>
+                        <ul class="submenu">
+                            <li><a href="productos.html?categoria=partido">Ropa de partido</a></li>
+                            <li><a href="productos.html?categoria=calle">Ropa de calle</a></li>
+                            <li><a href="productos.html?categoria=accesorios">Accesorios</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="login.html" class="nav-link">Iniciar Sesión</a></li>
+                    <li><a href="alta.html" class="nav-link btn-registro">Registrarse</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="registro-container">
+            <h1>Registrarse</h1>
+            <form method="post" action="alta.php">
                 <div class="form-group">
                     <label for="email">Correo electrónico:</label>
                     <input type="email" id="email" name="email" required>

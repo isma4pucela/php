@@ -1,6 +1,45 @@
 <?php
     include_once "conexion.php";
-    
-    
-    $mysqli->close();
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Oficial CD Rioseco</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <?php include 'navbar.php'; ?>
+
+    <section class="banner">
+        <div class="banner-texto">
+            <h1>Bienvenido a la Tienda Oficial CD Rioseco</h1>
+            <p>Descubre la mejor ropa y accesorios oficiales del CD Rioseco</p>
+        </div>
+    </section>
+
+    <section class="categorias">
+        <div class="container">
+            <h2>Nuestras Categorías</h2>
+            <div class="categorias-grid">
+                <div class="categoria-card">
+                    <img src="imagenes/camiseta.png" class="categoria-imagen">
+                    <h3>Ropa de partido</h3>
+                    <p>Equipaciones oficiales del club</p>
+                </div>
+                <div class="categoria-card">
+                    <img src="imagenes/calle.png" class="categoria-imagen">
+                    <h3>Ropa de calle</h3>
+                    <p>Cazadora, chándal y más</p>
+                </div>
+                <div class="categoria-card">
+                    <img src="imagenes/accesorios.png" class="categoria-imagen">
+                    <h3>Accesorios</h3>
+                    <p>Mochilas y otros accesorios</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
