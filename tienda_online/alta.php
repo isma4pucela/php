@@ -37,11 +37,6 @@ if ($email && $password) {
 
             <button type="submit" class="btn btn-primary">Registrarse</button>
         </form>
-
-        <p class="login-link">
-            <a href="login.php" class="form-link">Iniciar Sesión</a> | 
-            <a href="inicio.php" class="form-link">Volver al inicio</a>
-        </p>
     </div>
 </body>
 </html>
