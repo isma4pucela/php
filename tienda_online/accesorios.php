@@ -7,19 +7,7 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-brand">
-                <a href="inicio.php" class="logo">Tienda Oficial CD Rioseco</a>
-                <img src="imagenes/rioseco.png" alt="Escudo CD Rioseco" class="logo-imagen">
-            </div>
-            <ul class="nav-menu">
-                <li><a href="inicio.php" class="nav-link">Inicio</a></li>
-                <li><a href="login.php" class="nav-link no-hover">Iniciar Sesión</a></li>
-                <li><a href="alta.php" class="nav-link no-hover btn-registro">Registrarse</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include_once 'navbar.php'; ?>
 
     <section class="categorias">
         <div class="container">
@@ -28,14 +16,17 @@
                 <div class="categoria-card">
                     <img src="imagenes/mochila.png" class="categoria-imagen">
                     <h3>Mochila de espalda</h3>
+                    <p>Mochila oficial para llevar todo lo necesario con estilo</p>
                 </div>
                 <div class="categoria-card">
                     <img src="imagenes/bolso.png" class="categoria-imagen">
-                    <h3>Mochila tipo bandolera</h3>
+                    <h3>Bolso tipo bandolera</h3>
+                    <p>Bolso oficial para el día a día de los aficionados</p>
                 </div>
                 <div class="categoria-card">
                     <img src="imagenes/guardabotas.png" class="categoria-imagen">
                     <h3>Guardabotas</h3>
+                    <p>Guardabotas oficial para proteger el calzado deportivo</p>
                 </div>
             </div>
         </div>

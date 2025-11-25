@@ -7,19 +7,7 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-brand">
-                <a href="inicio.php" class="logo">Tienda Oficial CD Rioseco</a>
-                <img src="imagenes/rioseco.png" alt="Escudo CD Rioseco" class="logo-imagen">
-            </div>
-            <ul class="nav-menu">
-                <li><a href="inicio.php" class="nav-link">Inicio</a></li>
-                <li><a href="login.php" class="nav-link no-hover">Iniciar Sesión</a></li>
-                <li><a href="alta.php" class="nav-link no-hover btn-registro">Registrarse</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include_once 'navbar.php'; ?>
 
     <section class="categorias">
         <div class="container">
@@ -28,10 +16,12 @@
                 <div class="categoria-card">
                     <img src="imagenes/equipacion1.png" class="categoria-imagen">
                     <h3>1ª Equipación</h3>
+                    <p>Equipación oficial del CD Rioseco para partidos en casa</p>
                 </div>
                 <div class="categoria-card">
                     <img src="imagenes/equipacion2.png" class="categoria-imagen">
                     <h3>2ª Equipación</h3>
+                    <p>Equipación oficial del CD Rioseco para partidos fuera de casa</p>
                 </div>
             </div>
         </div>
