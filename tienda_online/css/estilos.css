@@ -68,10 +68,14 @@ a {
 }
 
 form {
-    max-width: 500px;
-    margin: 3rem auto;
-    padding: 3rem;
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
     border: 1px solid var(--borde);
+    background: var(--fondo);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 form h1 {
@@ -87,12 +91,11 @@ label {
 
 input {
     width: 100%;
-    padding: 1rem;
+    padding: 0.75rem;
     border: 1px solid var(--borde);
     font-family: inherit;
     font-size: 1rem;
-    margin-bottom: 1.5rem;
-    transition: 0.3s;
+    margin-bottom: 1rem;
 }
 
 input:focus {
@@ -114,6 +117,11 @@ button {
 button:hover {
     background: var(--secundario);
     color: var(--primario);
+}
+
+.error {
+    color: var(--error);
+    text-align: center;
 }
 
 .navbar {
@@ -222,10 +230,11 @@ button:hover {
 }
 
 .registro-container {
-    max-width: 500px;
-    margin: 3rem auto;
-    padding: 3rem;
+    max-width: 400px;
+    margin: 4rem auto;
+    padding: 2rem;
     border: 1px solid var(--borde);
+    background: var(--fondo);
 }
 
 .login-link {
