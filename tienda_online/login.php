@@ -1,12 +1,12 @@
 <?php  
     include_once "conexion.php";
     
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST["email"];
+        $password = $_POST["password"];
         
         // Aquí iría la lógica de autenticación
-        // $resultado = $mysqli->query("SELECT * FROM usuarios WHERE email='$email' AND password='$password'");
+        // $resultado = $mysqli->query("SELECT * FROM usuarios WHERE email=\"$email\" AND password=\"$password\"");
         
         $mysqli->close(); 
     }
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="login-page">
-    <?php include 'navbar.php'; ?>
+    <?php include "navbar.php"; ?>
     
     <div class="registro-container">
         <h1>Iniciar Sesión</h1>
