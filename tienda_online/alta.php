@@ -20,8 +20,8 @@ if ($email && $password) {
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
-
+    <?php include_once 'navbar.php'; ?>
+    
     <div class="registro-container">
         <h1>Registrarse</h1>
         <form method="post" action="alta.php">
@@ -38,7 +38,10 @@ if ($email && $password) {
             <button type="submit" class="btn btn-primary">Registrarse</button>
         </form>
 
-        <p class="login-link"><a href="inicio.php">Volver al inicio</a></p>
+        <p class="login-link">
+            <a href="login.php" class="form-link">Iniciar Sesión</a> | 
+            <a href="inicio.php" class="form-link">Volver al inicio</a>
+        </p>
     </div>
 </body>
 </html>

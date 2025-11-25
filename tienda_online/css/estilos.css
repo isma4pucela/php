@@ -67,6 +67,14 @@ a {
     color: var(--texto);
 }
 
+.form-link {
+    color: black;
+}
+
+.form-link:hover {
+    color: black;
+}
+
 form {
     max-width: 400px;
     margin: 2rem auto;

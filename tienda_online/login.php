@@ -41,7 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit" class="btn btn-primary">Entrar</button>
             <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
         </form>
-        <p class="login-link"><a href="alta.php">Registrarse</a> | <a href="inicio.php">Volver al inicio</a></p>
+        <p class="login-link">
+            <a href="alta.php" class="form-link">Registrarse</a> | 
+            <a href="inicio.php" class="form-link">Volver al inicio</a>
+        </p>
     </div>
 </body>
 </html>
