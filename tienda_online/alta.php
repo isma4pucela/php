@@ -1,12 +1,11 @@
 <?php  
     include_once "conexion.php";
     
-    $nombre = $_POST['nombre'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     
-    if ($nombre && $email && $password) {
-        $mysqli->query("INSERT INTO usuarios (nombre, email, password) VALUES ('$nombre','$email','$password')");  
+    if ($email && $password) {
+        $mysqli->query("INSERT INTO usuarios (email, password) VALUES ('$email','$password')");  
         echo "Ha sido dado de alta <br>";
         $mysqli->close(); 
         echo 'Desconexión realizada.';
