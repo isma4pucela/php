@@ -1,5 +1,5 @@
 <?php
-    include_once "conexion.php";
+include_once "conexion.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,7 +10,20 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="inicio.php" class="logo">Tienda Oficial CD Rioseco</a>
+                <img src="imagenes/rioseco.png" alt="Escudo CD Rioseco" class="logo-imagen">
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="inicio.php" class="nav-link active">Inicio</a></li>
+                <li><a href="login.php" class="nav-link no-hover">Iniciar Sesión</a></li>
+                <li><a href="alta.php" class="nav-link no-hover btn-registro">Registrarse</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <section class="banner">
         <div class="banner-texto">
@@ -23,21 +36,21 @@
         <div class="container">
             <h2>Nuestras Categorías</h2>
             <div class="categorias-grid">
-                <div class="categoria-card">
+                <a href="ropa_partido.php" class="categoria-card">
                     <img src="imagenes/camiseta.png" class="categoria-imagen">
                     <h3>Ropa de partido</h3>
                     <p>Equipaciones oficiales del club</p>
-                </div>
-                <div class="categoria-card">
+                </a>
+                <a href="ropa_calle.php" class="categoria-card">
                     <img src="imagenes/calle.png" class="categoria-imagen">
                     <h3>Ropa de calle</h3>
                     <p>Cazadora, chándal y más</p>
-                </div>
-                <div class="categoria-card">
+                </a>
+                <a href="accesorios.php" class="categoria-card">
                     <img src="imagenes/accesorios.png" class="categoria-imagen">
                     <h3>Accesorios</h3>
                     <p>Mochilas y otros accesorios</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>

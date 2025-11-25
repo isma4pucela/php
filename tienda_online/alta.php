@@ -1,15 +1,27 @@
 <?php  
-    include_once "conexion.php";
-    
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    
-    if ($email && $password) {
-        $mysqli->query("INSERT INTO usuarios (email, password) VALUES ('$email','$password')");  
-        echo "Ha sido dado de alta <br>";
-        $mysqli->close(); 
-        echo "Desconexión realizada.";
+session_start();
+include_once "conexion.php";
+
+$nombre = $_POST['nombre'] ?? '';
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
+$mensaje = '';
+
+if ($email && $password && $nombre) {
+    $check = $mysqli->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $check->bind_param("s", $email);
+    $check->execute();
+    $resultado = $check->get_result();
+
+    if ($resultado->num_rows > 0) {
+        $mensaje = "El usuario ya existe.";
+    } else {
+        $query = $mysqli->prepare("INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)");
+        $query->bind_param("sss", $nombre, $email, $password);
+        $query->execute();
+        $mensaje = "Registro completado.";
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,6 +36,9 @@
     
     <div class="registro-container">
         <h1>Registrarse</h1>
+
+        <?php if ($mensaje != '') echo "<p class='mensaje'>$mensaje</p>"; ?>
+
         <form method="post" action="alta.php">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>

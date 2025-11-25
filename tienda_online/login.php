@@ -1,16 +1,31 @@
 <?php  
-    include_once "conexion.php";
+session_start();
+include_once "conexion.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
     
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+    if ($email && $password) {
+        $query = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
+        $stmt = $mysqli->prepare($query);
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
         
-        // Aquí iría la lógica de autenticación
-        // $resultado = $mysqli->query("SELECT * FROM usuarios WHERE email=\"$email\" AND password=\"$password\"");
-        
-        $mysqli->close(); 
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['email'] = $user['email'];
+            header("Location: inicio.php");
+            exit();
+        } else {
+            $error = "Correo o contraseña incorrectos.";
+        }
+    } else {
+        $error = "Por favor, completa todos los campos.";
     }
-    else {
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,10 +35,10 @@
     <title>Iniciar Sesión - Tienda Oficial CD Rioseco</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body class="login-page">
-    <?php include "navbar.php"; ?>
+<body>
+    <?php include 'navbar.php'; ?>
     
-    <div class="registro-container">
+    <div class="login-container">
         <h1>Iniciar Sesión</h1>
         <form method="post" action="login.php">
             <div class="form-group">
@@ -36,14 +51,12 @@
                 <input type="password" id="password" name="password" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+            <?php if (isset($error)) { echo "<p class='error'>$error</p>"; } ?>
+
+            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
         </form>
 
-        <p class="login-link">¿No tienes cuenta? <a href="alta.php">Regístrate aquí</a></p>
-        <p class="login-link"><a href="inicio.php">Volver al inicio</a></p>
+        <p class="login-link"><a href="alta.php">¿No tienes cuenta? Regístrate</a></p>
     </div>
 </body>
 </html>
-<?php
-    }
-?>
