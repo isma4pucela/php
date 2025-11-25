@@ -16,12 +16,10 @@
                 <div class="categoria-card">
                     <img src="imagenes/equipacion1.png" class="categoria-imagen">
                     <h3>1ª Equipación</h3>
-                    <p>Equipación oficial del CD Rioseco para partidos en casa</p>
                 </div>
                 <div class="categoria-card">
                     <img src="imagenes/equipacion2.png" class="categoria-imagen">
                     <h3>2ª Equipación</h3>
-                    <p>Equipación oficial del CD Rioseco para partidos fuera de casa</p>
                 </div>
             </div>
         </div>
