@@ -1,4 +1,5 @@
 <?php
+// Incluyo conexión.php al archivo
 include_once "conexion.php";
 ?>
 <!DOCTYPE html>
