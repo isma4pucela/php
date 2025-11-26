@@ -14,16 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $contraseña = $_POST['contraseña'];
         
         // Compruebo las credenciales del usuario
-        $sesion = $mysqli->query("SELECT id, email FROM usuarios WHERE email = '$email' AND contraseña = '$contraseña'");
+        $sesion = $mysqli->query("SELECT id_usuario, email FROM usuarios WHERE email = '$email' AND contraseña = '$contraseña'");
         
         if ($sesion->num_rows > 0) {
             // Meto los datos del usuario en un array asociativo
             $usuario = $sesion->fetch_assoc();
-            $_SESSION['id_usuario'] = $usuario['id'];
+            $_SESSION['id_usuario'] = $usuario['id_usuario'];
             $_SESSION['email'] = $usuario['email'];
             
-            $mensaje = "<p>Ha iniciado sesión con $email</p>";
-            
+            header("Location: inicio.php");
+            exit();
         } else {
             $mensaje = "<p>Correo o contraseña incorrectos</p>";
         }

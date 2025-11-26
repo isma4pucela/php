@@ -47,7 +47,9 @@
         <h1>Eliminar Cuenta</h1>
         
         <?php echo $mensaje; ?>          
-            <p>Esta acción es irreversible y se perderán todos tus datos. No podrás iniciar sesión de nuevo con este correo.</p>
+        
+        <h2>¿Estás seguro de que quieres eliminar tu cuenta?</h2>
+        <p>Esta acción es irreversible y se perderán todos tus datos. No podrás iniciar sesión de nuevo con este correo.</p>
 
             <form method="post" action="baja.php">
                 <button type="submit" class="btn btn-primary" style="background-color: var(--error); margin-top: 20px;">ELIMINAR CUENTA</button>
