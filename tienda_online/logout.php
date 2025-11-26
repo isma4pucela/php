@@ -41,7 +41,7 @@
 
             <form method="post" action="logout.php">
                 <input type="hidden" name="confirmar_logout" value="si"> 
-                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">CERRAR SESIÓN</button>
+                <button type="submit" class="btn btn-primary" style=margin-top: 20px;">CERRAR SESIÓN</button>
             </form>
         </div>
     </body>

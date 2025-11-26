@@ -2,6 +2,9 @@
     // Incluyo el archivo conexión.php
     include_once "conexion.php";
 
+    // Inicio la sesión
+    session_start();
+
     $mensaje = "";
     
     // Compruebo si el formulario ha sido enviado
@@ -12,18 +15,31 @@
             $email = $_POST['email'];
             $contraseña = $_POST['contraseña'];
         
-            // Compruebo si el email ya está registrado y sino lo registro
+            // Compruebo si el email ya está registrado
             $registrado = $mysqli->query("SELECT email FROM usuarios WHERE email = '$email'");
             
             if ($registrado->num_rows > 0) {
-                $mensaje = "<p>$email ya está registrado</p>";
+                $mensaje = "<p class='error'>$email ya está registrado</p>";
             } else {
-                if ($mysqli->query("INSERT INTO usuarios (email, contraseña) VALUES ('$email', '$contraseña')") == TRUE) {
-                $mensaje = "<p>Usuario registrado</p>";
+                
+                if ($mysqli->query("INSERT INTO usuarios (email, contraseña) VALUES ('$email', '$contraseña')") === TRUE) {
+                    
+                    // Obtengo el ID del nuevo usuario
+                    $id_nuevo_usuario = $mysqli->insert_id;
+
+                    // Inicio la sesión con el nuevo ID y el email
+                    $_SESSION['id_usuario'] = $id_nuevo_usuario;
+                    $_SESSION['email'] = $email;
+                    
+                    header("Location: inicio.php");
+                    exit();
+                    
                 } else {
-                $mensaje = "<p>Error al registrar el usuario: " . $mysqli->error . "</p>";
+                    $mensaje = "<p class='error'>Error al registrar el usuario: " . $mysqli->error . "</p>";
                 }
             }
+        } else {
+             $mensaje = "<p class='error'>Por favor, introduce el correo y la contraseña.</p>";
         }
     }
     
@@ -41,10 +57,7 @@
     </head>
     
     <body>
-        <?php 
-            // Incluyo la barra de navegación
-            include_once 'navbar.php'; 
-        ?>
+        <?php include_once 'navbar.php'; ?>
     
         <div class="registro-container">
             <h1>Registrarse</h1>
@@ -62,10 +75,8 @@
 
                 <button type="submit" class="btn btn-primary">Registrarse</button>
             </form>
-
-            <?php 
-                echo $mensaje; 
-            ?>
+            
+            <?php echo $mensaje; ?>
         </div>
     </body>
 </html>
