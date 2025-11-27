@@ -5,7 +5,7 @@
     --gris: #666;
     --fondo: #fff;
     --claro: #f5f5f5;
-    --borrar: #ef4444;
+    --borrar: #ef4444; /* Usaremos esta variable para el botón Eliminar */
     --borde: #1a1a1a;
     --fuente: 'Segoe UI', sans-serif;
 }
@@ -132,6 +132,7 @@ button:hover {
     text-align: center;
 }
 
+/* --- Navbar Styles --- */
 .navbar {
     background: var(--secundario);
     position: sticky;
@@ -186,6 +187,7 @@ button:hover {
     color: var(--texto);
 }
 
+/* --- Banner Styles --- */
 .banner {
     background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url('../imagenes/campo.png') center/cover no-repeat;
     color: white;
@@ -206,6 +208,7 @@ button:hover {
     font-size: 1.25rem;
 }
 
+/* --- Categorías Styles --- */
 .categorias {
     padding: 3rem 1rem;
     background: var(--claro);
@@ -236,6 +239,7 @@ button:hover {
     margin-bottom: 1rem;
 }
 
+/* --- Registro/Form Styles --- */
 .registro-container {
     max-width: 600px;
     margin: 4rem auto;
@@ -255,7 +259,7 @@ button:hover {
 
 .registro-container form {
     border: none !important; 
-    padding: 0 !important;  
+    padding: 0 !important;   
     box-shadow: none !important; 
     display: block; 
 }
@@ -286,7 +290,7 @@ button:hover {
 
 .personalizacion-form {
     border: none !important;       
-    padding: 0 !important;          
+    padding: 0 !important;            
     box-shadow: none !important;    
     margin: 0 auto; 
     max-width: 100%;
@@ -296,3 +300,28 @@ button:hover {
     text-align: center;
 }
 
+
+
+.compras-table form {
+    margin: 0 !important;
+    padding: 0 !important; 
+    border: none !important; 
+    box-shadow: none !important;
+    background: none !important; 
+    display: inline; 
+    max-width: none !important; 
+}
+
+.compras-table form .btn {
+    width: auto;
+    padding: 0.5rem 1rem;
+    font-weight: 600; 
+    background-color: #ef4444;
+    box-shadow: none !important; 
+}
+
+.compras-table th, 
+.compras-table td {
+    padding: 10px 15px; 
+    text-align: left;
+}
