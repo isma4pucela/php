@@ -16,3 +16,7 @@ CREATE TABLE ventas (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
+
+INSERT INTO productos (id_producto, nombre) 
+VALUES (101, '1ª Equipación'), 
+       (102, '2ª Equipación');
