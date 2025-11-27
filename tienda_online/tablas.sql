@@ -10,9 +10,9 @@ CREATE TABLE productos (
 );
 
 CREATE TABLE ventas (
+    id_venta INT AUTO_INCREMENT PRIMARY KEY
     id_usuario INT NOT NULL,   
     id_producto INT NOT NULL,   
-    PRIMARY KEY (id_usuario, id_producto), 
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );

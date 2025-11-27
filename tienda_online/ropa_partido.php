@@ -24,7 +24,6 @@
                 
             if ($stmt = $mysqli->prepare($query_venta)) {
                     
-                $stmt->bind_param("ii", $id_usuario, $id_producto_comprado);
                     
                 if ($stmt->execute()) {
                         $mensaje = "<p>Producto comprado con éxito.</p>";
