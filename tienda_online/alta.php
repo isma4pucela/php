@@ -22,7 +22,9 @@
                 $mensaje = "<p class='error'>$email ya está registrado</p>";
             } else {
                 
-                if ($mysqli->query("INSERT INTO usuarios (email, contraseña) VALUES ('$email', '$contraseña')") === TRUE) {
+                $insert_id = $mysqli->query("INSERT INTO usuarios (email, contraseña) VALUES ('$email', '$contraseña')");
+
+                if ($insert_id === TRUE) {
                     
                     // Obtengo el ID del nuevo usuario
                     $id_nuevo_usuario = $mysqli->insert_id;

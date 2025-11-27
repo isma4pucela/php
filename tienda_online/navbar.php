@@ -20,6 +20,7 @@
                 if (isset($_SESSION['id_usuario'])) { 
             ?>
                     <li><a href="mis_compras.php" class="nav-link no-hover">Mis Compras</a></li>
+                    <li><a href="mi_cuenta.php" class="nav-link no-hover">Mi Cuenta</a></li>
                     <li><a href="logout.php" class="nav-link no-hover">Cerrar Sesión</a></li>
                     <li><a href="baja.php" class="nav-link no-hover">Eliminar Cuenta</a></li>            
             <?php

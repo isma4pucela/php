@@ -2,6 +2,7 @@
     include_once "conexion.php";
     session_start();
 
+    // Definiciones
     $tallas_disponibles = array('S', 'M', 'L', 'XL', 'XXL');
     $longitud_dorsal = 2;
     $longitud_nombre = 25;
@@ -10,53 +11,36 @@
     // Compruebo si se ha enviado el formulario
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['añadir_al_carrito'])) {
         
-        // Verifico si el usuario ha iniciado sesión
+        // 1. Verifico si el usuario ha iniciado sesión
         if (!isset($_SESSION['id_usuario'])) {
-            $mensaje = "<p>Debes <a href='login.php'>iniciar sesión</a> o <a href='alta.php'>registrarte</a> para poder añadir productos al carrito.</p>";
+            $mensaje = "<p>Debes iniciar sesión.</p>";
             
         } else {
             // Defino las variables
             $id_usuario = (int)$_SESSION['id_usuario'];
-            $id_producto_comprado = (int)$_POST['id_producto'];
-            
-            // Recoger los campos de personalización para validarlos (aunque no se guarden)
-            $talla_seleccionada = $_POST['talla'];
-            $dorsal_ingresado = $_POST['dorsal']; 
-            $nombre_ingresado = $_POST['nombre_personalizado'];
-    
-            // VALIDACIÓN (Mantenemos la validación para que el formulario se use correctamente)
-            if (!in_array($talla_seleccionada, $tallas_disponibles)) {
-                $mensaje = "<p>Por favor, selecciona una talla válida.</p>";
+            $id_producto = (int)$_POST['id_producto'];
+            $talla = $_POST['talla'];
+            $dorsal = $_POST['dorsal'];
+            $nombre = $_POST['nombre'];
 
-            } elseif (!empty($dorsal_ingresado) && 
-                      (!is_numeric($dorsal_ingresado) || strlen($dorsal_ingresado) > $longitud_dorsal) ) {
-                $mensaje = "<p>El dorsal debe ser numérico y tener máximo $longitud_dorsal dígitos. También puedes dejarlo vacío.</p>";
-
-            } elseif (strlen($nombre_ingresado) > $longitud_nombre) {
-                $mensaje = "<p>El nombre no puede exceder los $longitud_nombre caracteres.</p>";
-        
-            } else {
-                // Insertar la compra en la base de datos
-                $query_venta = "INSERT INTO ventas (id_usuario, id_producto, talla, dorsal, nombre_personalizado) VALUES (?, ?, ?, ?, ?)";
+            $venta = "INSERT INTO ventas (id_usuario, id_producto, talla, dorsal, nombre) VALUES (?, ?, ?, ?, ?)";
+                
+            if ($consulta = $mysqli->prepare($venta)) {
                     
-                if ($stmt = $mysqli->prepare($query_venta)) {
-                        
-                    // Vincula los valores a la consulta junto con su tipo
-                    $stmt->bind_param("iisss", $id_usuario, $id_producto_comprado, $talla_seleccionada, $dorsal_ingresado, $nombre_ingresado);
-                        
-                    if ($stmt->execute()) {
-                            $mensaje = "<p>¡Producto añadido a tus compras con éxito!</p>";
-                    } else {
-                            $mensaje = "<p>Error al registrar la venta: " . $stmt->error . "</p>";
-                    }
-                        
-                    $stmt->close();
-
+                $consulta->bind_param("iisss", $id_usuario, $id_producto, $talla, $dorsal, $nombre);
+                
+                if ($consulta->execute()) {
+                        $mensaje = "<p>Producto comprado con éxito.</p>";
                 } else {
-                    $mensaje = "<p>Error al preparar la consulta: " . $mysqli->error . "</p>";
+                        $mensaje = "<p>Error al registrar la venta: " . $consulta->error . "</p>";
                 }
-            
+                    
+                $consulta->close();
+
+            } else {
+                $mensaje = "<p>Error: " . $mysqli->error . "</p>";
             }
+        
         }
     }
 ?>
@@ -77,6 +61,7 @@
             <div class="container">
                 <h2>Ropa de Partido</h2>
                 
+                <br><?php echo $mensaje; ?> 
                         
                 <div class="categorias-grid">
                 
@@ -104,8 +89,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="nombre_personalizado">Nombre:</label>
-                                <input type="text" id="nombre_personalizado" name="nombre_personalizado" maxlength="<?php echo $longitud_nombre; ?>" >
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" id="nombre" name="nombre" maxlength="<?php echo $longitud_nombre; ?>" >
                             </div>
                             <button type="submit" name="añadir_al_carrito" class="btn btn-primary">Comprar</button>
 
@@ -137,8 +122,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="nombre_personalizado_2">Nombre:</label>
-                                <input type="text" id="nombre_personalizado_2" name="nombre_personalizado" maxlength="<?php echo $longitud_nombre; ?>" >
+                                <label for="nombre_2">Nombre:</label>
+                                <input type="text" id="nombre_2" name="nombre" maxlength="<?php echo $longitud_nombre; ?>" >
                             </div>
 
                             <button type="submit" name="añadir_al_carrito" class="btn btn-primary">Comprar</button>
@@ -146,9 +131,6 @@
                         </form>
                     </div>
                 </div>
-
-                <br><?php echo $mensaje; ?> 
-
             </div>
         </section>
     </body>

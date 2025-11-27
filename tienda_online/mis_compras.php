@@ -16,22 +16,22 @@
     // Compruebo si se ha enviado el formulario
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar_compra'])) {
         
-        $id_venta_a_eliminar = (int)$_POST['id_venta'];
+        $id_venta = (int)$_POST['id_venta'];
 
         // Consulta para eliminar la compra
-        $query_borrar = "DELETE FROM ventas WHERE id_venta = ? AND id_usuario = ?";
+        $borrar = "DELETE FROM ventas WHERE id_venta = ? AND id_usuario = ?";
         
-        if ($stmt = $mysqli->prepare($query_borrar)) {
+        if ($consulta = $mysqli->prepare($borrar)) {
             
             // Vincula los valores a la consulta
-            $stmt->bind_param("ii", $id_venta_a_eliminar, $id_usuario);
+            $consulta->bind_param("ii", $id_venta, $id_usuario);
             
-            if ($stmt->execute()) {
+            if ($consulta->execute()) {
                 $mensaje = "<p>Artículo eliminado</p>";
             } else {
-                $mensaje = "<p>Error al eliminar la compra: " . $stmt->error . "</p>";
+                $mensaje = "<p>Error al eliminar la compra: " . $consulta->error . "</p>";
         }
-        $stmt->close();
+        $consulta->close();
         
         } else {
             $mensaje = "<p>Error: " . $mysqli->error . "</p>";
@@ -39,26 +39,26 @@
     }
     
     // Consulta para obtener las compras del usuario junto con el nombre del producto
-    $query_select = "SELECT v.id_venta, p.nombre, v.talla, v.dorsal, v.nombre_personalizado 
+    $query_select = "SELECT v.id_venta, p.nombre as producto, v.talla, v.dorsal, v.nombre 
                      FROM ventas v 
                      JOIN productos p ON v.id_producto = p.id_producto 
                      WHERE v.id_usuario = ?";
     
-    $compras = [];
+    $compras = array();
     
-    if ($stmt = $mysqli->prepare($query_select)) {
+    if ($consulta = $mysqli->prepare($query_select)) {
         
         // Vinculo el parámetro
-        $stmt->bind_param("i", $id_usuario);
-        $stmt->execute();
+        $consulta->bind_param("i", $id_usuario);
+        $consulta->execute();
         
         // Obtengo el resultado
-        $resultado = $stmt->get_result();
+        $resultado = $consulta->get_result();
         
         // Meto en el array asociativo compras el resultado de la consulta
         $compras = $resultado->fetch_all(MYSQLI_ASSOC);
 
-        $stmt->close();
+        $consulta->close();
         
     } else {
         $mensaje .= "<p>Error: " . $mysqli->error . "</p>";
@@ -81,7 +81,7 @@
 
         <section class="mis-compras">
             <div class="container">
-                <h2>Mis Artículos Comprados</h2>
+                <h2>Mis compras</h2>
                                     
                     <table class="compras-table">
                         <thead>
@@ -96,10 +96,10 @@
                         <tbody>
                             <?php foreach ($compras as $compra) { ?>
                                 <tr>
-                                    <td><?php echo $compra['nombre']; ?></td>
+                                    <td><?php echo $compra['producto']; ?></td>
                                     <td><?php echo $compra['talla']; ?></td>
                                     <td><?php echo $compra['dorsal']; ?></td>
-                                    <td><?php echo $compra['nombre_personalizado']; ?></td>
+                                    <td><?php echo $compra['nombre']; ?></td>
                                     <td>
                                         <form method="post" action="mis_compras.php" style="border: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; display: inline;">
                                             <input type="hidden" name="id_venta" value="<?php echo htmlspecialchars($compra['id_venta']); ?>">

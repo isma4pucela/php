@@ -15,7 +15,7 @@ CREATE TABLE ventas (
     id_producto INT NOT NULL,
     talla VARCHAR(5),
     dorsal VARCHAR(2),
-    nombre_personalizado VARCHAR(25),   
+    nombre VARCHAR(25),   
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
