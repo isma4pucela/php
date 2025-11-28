@@ -1,17 +1,10 @@
-<?php
-    // Compruebo si la sesión está iniciada
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-?>
-
 <nav class="navbar">
     <div class="container">
         <div class="navbar-brand" style="margin-left: 1rem;">
             <a href="inicio.php" class="logo">Tienda Oficial CD Rioseco</a>
             <img src="imagenes/rioseco.png" alt="Escudo CD Rioseco" class="logo-imagen">
         </div>
-
+            
         <ul class="nav-menu">
             <li><a href="inicio.php" class="nav-link no-hover">Inicio</a></li>
             
