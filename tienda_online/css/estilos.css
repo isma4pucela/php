@@ -8,6 +8,8 @@
     --borrar: #ef4444; 
     --borde: #1a1a1a;
     --fuente: 'Segoe UI', sans-serif;
+    --success: #28a745; 
+    --error: #dc3545; 
 }
 
 * {
@@ -97,7 +99,7 @@ label {
     color: var(--texto);
 }
 
-input {
+input, select { 
     width: 100%;
     padding: 0.75rem;
     border: 1px solid var(--borde);
@@ -106,7 +108,7 @@ input {
     margin-bottom: 1rem;
 }
 
-input:focus {
+input:focus, select:focus {
     outline: none;
     border-color: var(--primario);
 }
@@ -130,7 +132,15 @@ button:hover {
 .error {
     color: var(--error);
     text-align: center;
+    font-weight: 600;
 }
+
+.success {
+    color: var(--success);
+    text-align: center;
+    font-weight: 600;
+}
+
 
 .navbar {
     background: var(--secundario);
@@ -187,7 +197,8 @@ button:hover {
 }
 
 .banner {
-background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../imagenes/campo.png') center/cover no-repeat;    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../imagenes/campo.png') center/cover no-repeat;
+    color: white;
     padding: 6rem 1rem;
     text-align: center;
     min-height: 500px;
@@ -205,7 +216,6 @@ background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../ima
     font-size: 1.25rem;
 }
 
-/* --- Categorías Styles --- */
 .categorias {
     padding: 3rem 1rem;
     background: var(--claro);
@@ -234,84 +244,6 @@ background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../ima
     height: 250px;
     object-fit: cover;
     margin-bottom: 1rem;
-}
-
-/* --- Registro/Form Styles --- */
-.registro-container {
-    max-width: 600px;
-    margin: 4rem auto;
-    padding: 2rem;
-    border: 2px solid var(--borde);
-    background: var(--fondo);
-}
-
-.registro-container h1 {
-    text-align: center;
-}
-
-.registro-container p {
-    text-align: center;
-    color: var(--texto);
-}
-
-.registro-container form {
-    border: none !important; 
-    padding: 0 !important;   
-    box-shadow: none !important; 
-    display: block; 
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group input[type="text"],
-.form-group input[type="number"],
-.form-group select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; 
-}
-
-.personalizacion-form {
-    border: none !important;       
-    padding: 0 !important;            
-    box-shadow: none !important;    
-    margin: 0 auto; 
-    max-width: 100%;
-}
-
-.container p {
-    text-align: center;
-}
-
-
-
-.compras-table form {
-    margin: 0 !important;
-    padding: 0 !important; 
-    border: none !important; 
-    box-shadow: none !important;
-    background: none !important; 
-    display: inline; 
-    max-width: none !important; 
-}
-
-.compras-table form .btn {
-    width: auto;
-    padding: 0.5rem 1rem;
-    font-weight: 600; 
-    background-color: #ef4444;
-    box-shadow: none !important; 
-}
-
-.compras-table th, 
-.compras-table td {
-    padding: 10px 15px; 
-    text-align: left;
 }
 
 
@@ -348,4 +280,126 @@ background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../ima
 
 .producto-card .form-group {
     text-align: left;
+}
+
+.personalizacion-form {
+    border: none !important;       
+    padding: 0 !important;            
+    box-shadow: none !important;    
+    margin: 0 auto; 
+    max-width: 100%;
+}
+
+
+.registro-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 2rem;
+    border: 2px solid var(--borde);
+    background: var(--fondo);
+}
+
+.registro-container h1 {
+    text-align: center;
+}
+
+.registro-container p {
+    text-align: center;
+    color: var(--texto);
+}
+
+.registro-container form {
+    border: none !important; 
+    padding: 0 !important;   
+    box-shadow: none !important; 
+    display: block; 
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="password"],
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+.registro-container h3 {
+    text-align: center;
+}
+
+
+
+.mis-compras {
+    padding: 3rem 1rem;
+}
+
+.compras-table {
+    max-width: 900px;
+    width: 95%; 
+    margin: 2rem auto; 
+    
+    border-collapse: collapse; 
+    font-size: 1rem;
+    background-color: var(--fondo); 
+    box-shadow: none; 
+    border: none;
+}
+
+.compras-table th, 
+.compras-table td {
+    padding: 12px 18px; 
+    text-align: left;
+    border-bottom: none;
+}
+
+.compras-table thead th {
+    background-color: var(--fondo);
+    color: var(--texto);
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: none; 
+}
+
+.compras-table tbody tr:nth-child(even) {
+    background-color: var(--fondo); 
+}
+
+.compras-table tbody tr:hover {
+    background-color: var(--claro); 
+}
+
+.compras-table form {
+    margin: 0 !important;
+    padding: 0 !important; 
+    border: none !important; 
+    box-shadow: none !important;
+    background: none !important; 
+    display: inline; 
+    max-width: none !important; 
+}
+
+.compras-table form .btn-danger {
+    width: auto;
+    padding: 0.5rem 1rem;
+    font-weight: 600; 
+    background-color: var(--borrar);
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.compras-table form .btn-danger:hover {
+    background-color: #c82333; 
+}
+
+.container p {
+    text-align: center;
 }
