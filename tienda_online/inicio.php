@@ -20,7 +20,7 @@
 
         <section class="categorias">
             <div class="container">
-                <h2>Nuestras Categorías</h2>
+                <h2>Productos</h2>
                 <div class="categorias-grid">
                     <a href="ropa_partido.php" class="categoria-card categoria-link">
                         <img src="imagenes/camiseta.png" class="categoria-imagen">
