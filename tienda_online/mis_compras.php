@@ -39,7 +39,7 @@
     }
     
     // Consulta para obtener las compras del usuario junto con el nombre del producto
-    $query_select = "SELECT v.id_venta, p.nombre as producto, v.talla, v.dorsal, v.nombre 
+    $query_select = "SELECT v.id_venta, p.nombre as producto
                      FROM ventas v 
                      JOIN productos p ON v.id_producto = p.id_producto 
                      WHERE v.id_usuario = ?";
@@ -84,22 +84,11 @@
                 <h2>Mis compras</h2>
                                     
                     <table class="compras-table">
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Talla</th>
-                                <th>Dorsal</th>
-                                <th>Nombre</th>
-                                <th>Acción</th>
-                            </tr>
-                        </thead>
+                    
                         <tbody>
                             <?php foreach ($compras as $compra) { ?>
                                 <tr>
                                     <td><?php echo $compra['producto']; ?></td>
-                                    <td><?php echo $compra['talla']; ?></td>
-                                    <td><?php echo $compra['dorsal']; ?></td>
-                                    <td><?php echo $compra['nombre']; ?></td>
                                     <td>
                                         <form method="post" action="mis_compras.php" style="border: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; display: inline;">
                                             <input type="hidden" name="id_venta" value="<?php echo htmlspecialchars($compra['id_venta']); ?>">
