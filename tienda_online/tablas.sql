@@ -12,10 +12,7 @@ CREATE TABLE productos (
 CREATE TABLE ventas (
     id_venta INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT NOT NULL,   
-    id_producto INT NOT NULL,
-    talla VARCHAR(5),
-    dorsal VARCHAR(2),
-    nombre VARCHAR(25),   
+    id_producto INT NOT NULL,  
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
@@ -29,4 +26,3 @@ VALUES (101, '1ª Equipación'),
        (106, 'Mochila de espalda'),
        (107, 'Mochila tipo bandolera'),
        (108, 'Guardabotas');
-
