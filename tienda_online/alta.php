@@ -14,6 +14,8 @@
         if (isset($_POST['email']) && isset($_POST['contraseña'])) {
             $email = $_POST['email'];
             $contraseña = $_POST['contraseña'];
+            
+            // Cifro la contraseña
             $contraseña_cifrada = password_hash($contraseña, PASSWORD_DEFAULT);
         
             // Compruebo si el email ya está registrado
@@ -23,9 +25,9 @@
                 $mensaje = "<p class='error'>$email ya está registrado</p>";
             } else {
                 
-                $insert_id = $mysqli->query("INSERT INTO usuarios (email, contraseña) VALUES ('$email', '$contraseña_cifrada')");
+                $cuenta = $mysqli->query("INSERT INTO usuarios (email, contraseña) VALUES ('$email', '$contraseña_cifrada')");
 
-                if ($insert_id === TRUE) {
+                if ($cuenta === TRUE) {
                     
                     // Obtengo el ID del nuevo usuario
                     $id_nuevo_usuario = $mysqli->insert_id;
