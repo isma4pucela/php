@@ -13,8 +13,8 @@
     
         // Compruebo que el email y la contraseña no estén vacíos
         if (isset($_POST['email']) && isset($_POST['contraseña'])) {
-            $email = $_POST['email'];
-            $contraseña = $_POST['contraseña'];
+            $email = mysqli_real_escape_string($mysqli, $_POST['email']);
+            $contraseña = mysqli_real_escape_string($mysqli, $_POST['contraseña']);
             
             // Cifro la contraseña
             $contraseña_cifrada = password_hash($contraseña, PASSWORD_DEFAULT);
