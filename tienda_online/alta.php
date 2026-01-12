@@ -5,6 +5,7 @@
     // Inicio la sesión
     session_start();
 
+    // Variable para mensajes de error o éxito
     $mensaje = "";
     
     // Compruebo si el formulario ha sido enviado
@@ -21,11 +22,12 @@
             // Compruebo si el email ya está registrado
             $registrado = $mysqli->query("SELECT email FROM usuarios WHERE email = '$email'");
             
+            // Si el email ya existe, muestro un mensaje de error
             if ($registrado->num_rows > 0) {
                 $mensaje = "<p class='error'>$email ya está registrado</p>";
             } else {
                 
-                $cuenta = $mysqli->query("INSERT INTO usuarios (email, contraseña) VALUES ('$email', '$contraseña_cifrada')");
+                $cuenta = $mysqli->query("INSERT INTO usuarios (email, contrasena) VALUES ('$email', '$contraseña_cifrada')");
 
                 if ($cuenta === TRUE) {
                     
@@ -36,6 +38,7 @@
                     $_SESSION['id_usuario'] = $id_nuevo_usuario;
                     $_SESSION['email'] = $email;
                     
+                    // Redirijo al usuario a la página de inicio
                     header("Location: inicio.php");
                     exit();
                     

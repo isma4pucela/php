@@ -3,6 +3,7 @@
     include_once "conexion.php";
     session_start();
 
+    // Variable para mensajes de error o éxito
     $mensaje = "";
 
     // Compruebo si el formulario ha sido enviado
@@ -17,7 +18,7 @@
             $sesion = $mysqli->query("SELECT id_usuario, email FROM usuarios WHERE email = '$email' AND contraseña = '$contraseña'");
         
             if ($sesion->num_rows > 0) {
-                // Meto los datos del usuario en un array asociativo
+                // Meto los datos del usuario en un array de sesión
                 $usuario = $sesion->fetch_assoc();
                 $_SESSION['id_usuario'] = $usuario['id_usuario'];
                 $_SESSION['email'] = $usuario['email'];

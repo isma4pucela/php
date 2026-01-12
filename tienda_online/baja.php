@@ -5,6 +5,7 @@
     // Inicio la sesión
     session_start();
 
+    // Variable para mensajes de error o éxito
     $mensaje = "";
 
     // Verifico que el usuario esté logueado
@@ -51,9 +52,6 @@
         
             <?php echo $mensaje; ?>          
         
-            <h2>¿Estás seguro de que quieres eliminar tu cuenta?</h2>
-            <p>Esta acción es irreversible y se perderán todos tus datos. No podrás iniciar sesión de nuevo con este correo.</p>
-
             <form method="post" action="baja.php">
                 <input type="hidden" name="confirmar_baja" value="si">
                 <button type="submit" class="btn btn-primary" style="background-color: var(--borrar); margin-top: 20px;">ELIMINAR CUENTA</button>
