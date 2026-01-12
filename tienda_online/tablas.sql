@@ -6,7 +6,9 @@ CREATE TABLE usuarios (
 
 CREATE TABLE productos (
     id_producto INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL
+    nombre VARCHAR(100) NOT NULL,
+    stock INT,
+    estado VARCHAR(100)
 );
 
 CREATE TABLE ventas (
