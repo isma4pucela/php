@@ -7,7 +7,7 @@
     
     // Compruebo que la conexión se haya realizado correctamente
     if (!isset($mysqli) || $mysqli->connect_error) {
-        die("Error FATAL: No se pudo establecer la conexión con la base de datos. Por favor, revise 'conexion.php'.");
+        die("Error: No se pudo establecer la conexión con la base de datos. Por favor, revise 'conexion.php'.");
     }
 
     $mensaje = ""; 
