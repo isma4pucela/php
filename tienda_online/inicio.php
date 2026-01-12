@@ -140,7 +140,7 @@
                     foreach ($productos as $producto): 
             ?>
                 <div class="producto-card">
-                    <h3><?php echo htmlspecialchars($producto['nombre']); ?></h3>
+                    <h3><?php echo $producto['nombre']; ?></h3>
                     
                     <form method="post" action="inicio.php" class="personalizacion-form">
                         

@@ -11,8 +11,8 @@
     
         // Compruebo que el email y la contraseña no estén vacíos
         if (isset($_POST['email']) && isset($_POST['contraseña'])) {
-            $email = $_POST['email'];
-            $contraseña = $_POST['contraseña'];
+            $email = mysqli_real_escape_string($mysqli, $_POST['email']);
+            $contraseña = mysqli_real_escape_string($mysqli, $_POST['contraseña']);
         
             // Compruebo las credenciales del usuario
             $sesion = $mysqli->query("SELECT id_usuario, email FROM usuarios WHERE email = '$email' AND contraseña = '$contraseña'");
