@@ -25,7 +25,7 @@
             $id_producto = (int)$_POST['id_producto'];
 
             $venta = "INSERT INTO ventas (id_usuario, id_producto, estado) VALUES ($id_usuario, $id_producto, 'carrito')";
-            
+
             if ($mysqli->query($venta) === TRUE) {
                 $mensaje = "<p>Producto añadido al carrito con éxito.</p>";
             } else {
@@ -42,7 +42,7 @@
     }
 
     // Consulta base
-    $select = "SELECT id_producto, nombre FROM productos"; 
+    $select = "SELECT id_producto, nombre, imagen FROM productos"; 
 
     if ($busqueda !== "") {
         $select .= " WHERE nombre LIKE '%$busqueda%'"; 
@@ -104,7 +104,10 @@
                     foreach ($productos as $producto): 
             ?>
                 <div class="producto-card">
+                    
+                    <img src="<?php echo $producto['imagen']; ?>" alt="<?php echo $producto['nombre']; ?>" class="categoria-imagen">
                     <h3><?php echo $producto['nombre']; ?></h3>
+
                     
                     <form method="post" action="inicio.php" class="personalizacion-form">
                         
