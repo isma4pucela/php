@@ -24,8 +24,8 @@
             $id_usuario = (int)$_SESSION['id_usuario'];
             $id_producto = (int)$_POST['id_producto'];
 
-            $venta = "INSERT INTO ventas (id_usuario, id_producto) VALUES ($id_usuario, $id_producto)";
-                              	
+            $venta = "INSERT INTO ventas (id_usuario, id_producto, estado) VALUES ($id_usuario, $id_producto, 'carrito')";
+            
             if ($mysqli->query($venta) === TRUE) {
                 $mensaje = "<p>Producto añadido al carrito con éxito.</p>";
             } else {

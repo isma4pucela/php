@@ -2,7 +2,7 @@
     <div class="container">
         <div class="navbar-brand" style="margin-left: 1rem;">
             <a href="inicio.php" class="logo">Tienda Oficial CD Rioseco</a>
-            <img src="imagenes/rioseco.png" alt="Escudo CD Rioseco" class="logo-imagen">
+            <img src="escudo.png" alt="Escudo CD Rioseco" class="logo-imagen">
         </div>
             
         <ul class="nav-menu">
