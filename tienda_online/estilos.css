@@ -396,8 +396,14 @@ button:hover {
     transition: background-color 0.2s;
 }
 
-.compras-table form .btn-danger:hover {
-    background-color: #c82333; 
+.compras-table form .btn-compra {
+    width: auto;
+    padding: 0.5rem 1rem;
+    font-weight: 600; 
+    background-color: var(--success);
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.2s;
 }
 
 .container p {

@@ -72,7 +72,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mis Compras</title>
+        <title>Mi carrito</title>
         <link rel="stylesheet" href="estilos.css">
     </head>
 
@@ -81,7 +81,7 @@
 
         <section class="mis-compras">
             <div class="container">
-                <h2>Mis compras</h2>
+                <h2>Mi carrito</h2>
                                     
                     <table class="compras-table">
                     
@@ -90,9 +90,15 @@
                                 <tr>
                                     <td><?php echo $compra['producto']; ?></td>
                                     <td>
-                                        <form method="post" action="mis_compras.php" style="border: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; display: inline;">
-                                            <input type="hidden" name="id_venta" value="<?php echo htmlspecialchars($compra['id_venta']); ?>">
+                                        <form method="post" action="carrito.php" style="border: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; display: inline;">
+                                            <input type="hidden" name="id_venta" value="<?php echo $compra['id_venta']; ?>">
                                             <button type="submit" name="eliminar_compra" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="post" action="carrito.php" style="border: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; display: inline;">
+                                            <input type="hidden" name="id_venta" value="<?php echo $compra['id_venta']; ?>">
+                                            <button type="submit" name="confirmar_compra" class="btn btn-compra">Comprar</button>
                                         </form>
                                     </td>
                                 </tr>
