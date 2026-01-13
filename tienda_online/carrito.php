@@ -11,60 +11,58 @@
         exit;
     }
 
-    $id_usuario = (int)$_SESSION['id_usuario'];
+    $id_usuario = $_SESSION['id_usuario'];
 
     // Compruebo si se ha enviado el formulario
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar_compra'])) {
         
-        $id_venta = (int)$_POST['id_venta'];
+        $id_venta = $_POST['id_venta'];
 
         // Consulta para eliminar la compra
-        $borrar = "DELETE FROM ventas WHERE id_venta = ? AND id_usuario = ?";
+        $borrar = "DELETE FROM ventas WHERE id_venta = $id_venta AND id_usuario = $id_usuario";
         
-        if ($consulta = $mysqli->prepare($borrar)) {
-            
-            // Vincula los valores a la consulta
-            $consulta->bind_param("ii", $id_venta, $id_usuario);
-            
-            if ($consulta->execute()) {
-                $mensaje = "<p>Artículo eliminado</p>";
-            } else {
-                $mensaje = "<p>Error al eliminar la compra: " . $consulta->error . "</p>";
-        }
-        $consulta->close();
-        
+        if ($mysqli->query($borrar) === TRUE) {  
+            $mensaje = "<p>Artículo eliminado</p>";
         } else {
-            $mensaje = "<p>Error: " . $mysqli->error . "</p>";
+            $mensaje = "<p>Error al eliminar la compra: " . $mysqli->error . "</p>";
         }
     }
-    
+         
+    // Compruebo si se ha enviado el formulario
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar_compra'])) {
+        
+        $id_venta = $_POST['id_venta'];
+
+        // Sentencia para actualizar el estado a "comprado"
+        $confirmar_compra = "UPDATE ventas SET estado = 'comprado' WHERE id_venta = $id_venta AND id_usuario = $id_usuario";
+        
+        if ($mysqli->query($confirmar_compra) === TRUE) {
+            $mensaje = "<p>Compra realizada con éxito</p>";
+        } else {
+            $mensaje = "<p>Error al procesar la compra: " . $consulta->error . "</p>";
+        }
+    }
+
     // Consulta para obtener las compras del usuario junto con el nombre del producto
-    $query_select = "SELECT v.id_venta, p.nombre as producto
-                     FROM ventas v 
-                     JOIN productos p ON v.id_producto = p.id_producto 
-                     WHERE v.id_usuario = ?";
-    
+    $select = "SELECT v.id_venta, p.nombre as producto
+               FROM ventas v 
+               JOIN productos p ON v.id_producto = p.id_producto 
+               WHERE v.id_usuario = $id_usuario
+               AND (v.estado != 'comprado' OR v.estado IS NULL)";
+
+
     $compras = array();
-    
-    if ($consulta = $mysqli->prepare($query_select)) {
-        
-        // Vinculo el parámetro
-        $consulta->bind_param("i", $id_usuario);
-        $consulta->execute();
-        
-        // Obtengo el resultado
-        $resultado = $consulta->get_result();
+
+    $resultado = $mysqli->query($select);
+
+    if ($resultado) {  
         
         // Meto en el array asociativo compras el resultado de la consulta
         $compras = $resultado->fetch_all(MYSQLI_ASSOC);
 
-        $consulta->close();
-        
     } else {
         $mensaje .= "<p>Error: " . $mysqli->error . "</p>";
     }
-    
-    $mysqli->close();
 ?>
 
 <!DOCTYPE html>

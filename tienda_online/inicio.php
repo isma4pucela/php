@@ -24,21 +24,12 @@
             $id_usuario = (int)$_SESSION['id_usuario'];
             $id_producto = (int)$_POST['id_producto'];
 
-            $venta = "INSERT INTO ventas (id_usuario, id_producto) VALUES (?, ?)";
-                
-            if ($consulta1 = $mysqli->prepare($venta)) {
-                	
-                    //Vinculo los datos
-                    $consulta1->bind_param("ii", $id_usuario, $id_producto);
-                
-                if ($consulta1->execute()) {
-                    $mensaje = "<p>Producto añadido al carrito con éxito.</p>";
-                } else {
-                    $mensaje = "<p>Error al registrar la venta: " . $consulta1->error . "</p>";
-                }
-                $consulta1->close();
+            $venta = "INSERT INTO ventas (id_usuario, id_producto) VALUES ($id_usuario, $id_producto)";
+                              	
+            if ($mysqli->query($venta) === TRUE) {
+                $mensaje = "<p>Producto añadido al carrito con éxito.</p>";
             } else {
-                $mensaje = "<p>Error al preparar la consulta de venta: " . $mysqli->error . "</p>";
+                $mensaje = "<p>Error al registrar la venta: " . $mysqli->error . "</p>";
             }
         }
     }
