@@ -36,52 +36,25 @@
 
 
     
-    // Verificamos si se envió el formulario de búsqueda (POST)
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['buscar']) && $_POST['buscar'] !== "") {
-        $busqueda = $_POST['buscar'];
+    // Verifico si se envió el formulario
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['buscar'])) {
+        $busqueda = $mysqli->real_escape_string($_POST['buscar']);
     }
 
-    $buscar = '%' . $busqueda . '%';
-    
-    $insertar = "SELECT id_producto, nombre FROM productos"; 
-            
-    $tipos = ""; 
-    $parametros = [];
+    // Consulta base
+    $select = "SELECT id_producto, nombre FROM productos"; 
 
-    // Si hay un término de búsqueda, añadimos el filtro WHERE (seguro)
-    if (!empty($busqueda)) {
-        $insertar .= " WHERE nombre LIKE ?";
-        $tipos = "s"; // Solo un string
-        $parametros = [&$buscar];
+    if ($busqueda !== "") {
+        $select .= " WHERE nombre LIKE '%$busqueda%'"; 
     }
-    
-    // Ejecución de la consulta preparada
-    if ($consulta2 = $mysqli->prepare($insertar)) {
-        
-        if (!empty($tipos)) {
-            $consulta2->bind_param($tipos, ...$parametros); 
-        }
 
-        $consulta2->execute();
-        $resultado = $consulta2->get_result();
+    $resultado = $mysqli->query($select);
 
-        if ($resultado->num_rows > 0) {
-            while ($fila = $resultado->fetch_assoc()) {
-                $productos[] = $fila;
-            }
-        } else {
-            if (!empty($busqueda)) {
-                 $listado = "No se encontraron productos que coincidan con: '<strong>" . htmlspecialchars($busqueda) . "</strong>'.";
-            } else {
-                 $listado = "No hay productos en la tienda.";
-            }
-        }
-        $consulta2->close();
+    if ($resultado) {
+        $productos = $resultado->fetch_all(MYSQLI_ASSOC);
     } else {
-        $listado = "Error al preparar la consulta de listado: " . $mysqli->error;
+        echo "Error en SQL: " . $mysqli->error . " <br> Consulta enviada: " . $select;
     }
-
-    $mysqli->close();
 ?>
 
 <!DOCTYPE html>

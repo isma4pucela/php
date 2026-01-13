@@ -15,44 +15,31 @@
     $usuario_actual = "";
 
     // Obtengo el email del usuario actual
-    $email = "SELECT email FROM usuarios WHERE id_usuario = ?";
-    if ($consulta1 = $mysqli->prepare($email)) {
-        $consulta1->bind_param("i", $id_usuario);
-        $consulta1->execute();
-        $resultado = $consulta1->get_result();
-        if ($fila = $resultado->fetch_assoc()) {
-            $usuario_actual = $fila['email'];
-        }
-        $consulta1->close();
+    $email = "SELECT email FROM usuarios WHERE id_usuario = $id_usuario";
+    $resultado_email = $mysqli->query($email);
+
+    if ($resultado_email && $fila = $resultado_email->fetch_assoc()) {
+        $usuario_actual = $fila['email'];
     }
     
     // Proceso el formulario de cambio de contraseña
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cambiar_contraseña'])) {
         
-        $contraseña_nueva = $_POST['contraseña_nueva'];
+        $contraseña_nueva = password_hash($_POST['contraseña_nueva'], PASSWORD_DEFAULT);
 
         if (empty($contraseña_nueva)) {
             $mensaje = "<p>Es obligatorio introducir una nueva contraseña.</p>";
         } else {
             // Cambio la contraseña
-            $cambio = "UPDATE usuarios SET contraseña = ? WHERE id_usuario = ?";
+            $cambio = "UPDATE usuarios SET contrasena = '$contraseña_nueva' WHERE id_usuario = $id_usuario";
             
-            if ($consulta = $mysqli->prepare($cambio)) {
-                
-                $consulta->bind_param("si", $contraseña_nueva, $id_usuario);
-                
-                if ($consulta->execute()) {
-                    $mensaje = "<p>Su contraseña se ha actualizado</p>";
-                } else {
-                    $mensaje = "<p>Error al actualizar la contraseña: " . $consulta->error . "</p>";
-                }
-                $consulta->close();
+            if ($mysqli->query($cambio) === TRUE) {
+                $mensaje = "<p>Su contraseña se ha actualizado</p>";
             } else {
-                $mensaje = "<p>Error al preparar la consulta de actualización: " . $mysqli->error . "</p>";
-            }
+                $mensaje = "<p>Error al actualizar la contraseña: " . $mysqli->error . "</p>";
+            }   
         }
     }
-
     // Cerramos la conexión a la base de datos
     $mysqli->close();
 ?>
