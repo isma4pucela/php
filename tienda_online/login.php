@@ -11,23 +11,29 @@
     
         // Compruebo que el email y la contraseña no estén vacíos
         if (isset($_POST['email']) && isset($_POST['contraseña'])) {
-            $email = mysqli_real_escape_string($mysqli, $_POST['email']);
-            $contraseña = mysqli_real_escape_string($mysqli, $_POST['contraseña']);
+            $email = $mysqli->real_escape_string($_POST['email']);
+            $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
         
             // Compruebo las credenciales del usuario
-            $sesion = $mysqli->query("SELECT id_usuario, email FROM usuarios WHERE email = '$email' AND contraseña = '$contraseña'");
-        
-            if ($sesion->num_rows > 0) {
-                // Meto los datos del usuario en un array de sesión
-                $usuario = $sesion->fetch_assoc();
-                $_SESSION['id_usuario'] = $usuario['id_usuario'];
-                $_SESSION['email'] = $usuario['email'];
-            
-                header("Location: inicio.php");
-                exit();
+            $select = "SELECT id_usuario, email, contrasena FROM usuarios WHERE email = '$email'";
+            $sesion = $mysqli->query($select);
+
+            // Compruebo si el usuario existe
+            if ($sesion && $fila = $sesion->fetch_assoc()) {
+                $contraseña_cifrada = $fila['contrasena'];
+          
+                // Comparo la contraseña
+                if (password_verify($contraseña, $contraseña_cifrada)) {
+                    $_SESSION['id_usuario'] = $fila['id_usuario'];
+
+                    header("Location: inicio.php");
+                    exit();
+                } else {
+                    $mensaje = "La contraseña es incorrecta.";
+                }
             } else {
-                $mensaje = "<p>Correo o contraseña incorrectos</p>";
-            }
+                $mensaje = "El usuario no existe.";
+            }       
         } 
     }
 

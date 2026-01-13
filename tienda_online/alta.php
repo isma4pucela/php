@@ -13,8 +13,8 @@
     
         // Compruebo que el email y la contraseña no estén vacíos
         if (isset($_POST['email']) && isset($_POST['contraseña'])) {
-            $email = mysqli_real_escape_string($mysqli, $_POST['email']);
-            $contraseña = mysqli_real_escape_string($mysqli, $_POST['contraseña']);
+            $email = $mysqli->real_escape_string($_POST['email']);
+            $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
             
             // Cifro la contraseña
             $contraseña_cifrada = password_hash($contraseña, PASSWORD_DEFAULT);
@@ -24,7 +24,7 @@
             
             // Si el email ya existe, muestro un mensaje de error
             if ($registrado->num_rows > 0) {
-                $mensaje = "<p class='error'>$email ya está registrado</p>";
+                $mensaje = "<p>$email ya está registrado</p>";
             } else {
                 
                 $cuenta = $mysqli->query("INSERT INTO usuarios (email, contrasena) VALUES ('$email', '$contraseña_cifrada')");
@@ -43,11 +43,11 @@
                     exit();
                     
                 } else {
-                    $mensaje = "<p class='error'>Error al registrar el usuario: " . $mysqli->error . "</p>";
+                    $mensaje = "<p>Error al registrar el usuario: " . $mysqli->error . "</p>";
                 }
             }
         } else {
-             $mensaje = "<p class='error'>Por favor, introduce el correo y la contraseña.</p>";
+             $mensaje = "<p>Por favor, introduce el correo y la contraseña.</p>";
         }
     }
     
