@@ -12,6 +12,7 @@
                 // Si la sesión está iniciada, muestro las opciones de cuenta
                 if (isset($_SESSION['id_usuario'])) { 
             ?>
+                    <li><a href="carrito.php" class="nav-link no-hover">Carrito</a></li>
                     <li><a href="mis_compras.php" class="nav-link no-hover">Mis Compras</a></li>
                     <li><a href="mi_cuenta.php" class="nav-link no-hover">Mi Cuenta</a></li>
                     <li><a href="logout.php" class="nav-link no-hover">Cerrar Sesión</a></li>
