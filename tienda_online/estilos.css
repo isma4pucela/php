@@ -65,15 +65,7 @@ a {
     color: var(--texto);
 }
 
-.categoria-link:hover {
-    color: var(--texto);
-}
-
 .form-link {
-    color: black;
-}
-
-.form-link:hover {
     color: black;
 }
 
@@ -121,26 +113,7 @@ button {
     border: none;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
 }
-
-button:hover {
-    background: var(--secundario);
-    color: var(--primario);
-}
-
-.error {
-    color: var(--error);
-    text-align: center;
-    font-weight: 600;
-}
-
-.success {
-    color: var(--success);
-    text-align: center;
-    font-weight: 600;
-}
-
 
 .navbar {
     background: var(--secundario);
@@ -192,10 +165,6 @@ button:hover {
     position: relative;
 }
 
-.nav-link.no-hover:hover {
-    color: var(--texto);
-}
-
 .banner {
     background: url('./campo.png') center/cover no-repeat;
     color: white;
@@ -235,17 +204,12 @@ button:hover {
     border: 2px solid transparent;
 }
 
-.categoria-card:hover {
-    border-color: var(--primario);
-}
-
 .categoria-imagen {
     width: 250px;
     height: 250px;
     object-fit: cover;
     margin-bottom: 1rem;
 }
-
 
 .productos-grid {
     display: flex;
@@ -278,10 +242,6 @@ button:hover {
     margin-top: 1rem;
 }
 
-.producto-card .form-group {
-    text-align: left;
-}
-
 .personalizacion-form {
     border: none !important;       
     padding: 0 !important;            
@@ -289,7 +249,6 @@ button:hover {
     margin: 0 auto; 
     max-width: 100%;
 }
-
 
 .registro-container {
     max-width: 600px;
@@ -299,20 +258,8 @@ button:hover {
     background: var(--fondo);
 }
 
-.registro-container h1 {
+.registro-container h1, .registro-container p, .registro-container h3 {
     text-align: center;
-}
-
-.registro-container p {
-    text-align: center;
-    color: var(--texto);
-}
-
-.registro-container form {
-    border: none !important; 
-    padding: 0 !important;   
-    box-shadow: none !important; 
-    display: block; 
 }
 
 .form-group {
@@ -331,33 +278,22 @@ button:hover {
     box-sizing: border-box; 
 }
 
-.registro-container h3 {
-    text-align: center;
-}
-
-
-
 .mis-compras {
     padding: 3rem 1rem;
 }
 
 .compras-table {
-    max-width: 900px;
-    width: 95%; 
+    width: 60%; 
     margin: 2rem auto; 
-    
     border-collapse: collapse; 
     font-size: 1rem;
     background-color: var(--fondo); 
-    box-shadow: none; 
     border: none;
 }
 
-.compras-table th, 
-.compras-table td {
+.compras-table th, .compras-table td {
     padding: 12px 18px; 
     text-align: left;
-    border-bottom: none;
 }
 
 .compras-table thead th {
@@ -365,26 +301,8 @@ button:hover {
     color: var(--texto);
     font-weight: 700;
     text-transform: uppercase;
-    border-bottom: none; 
 }
 
-.compras-table tbody tr:nth-child(even) {
-    background-color: var(--fondo); 
-}
-
-.compras-table tbody tr:hover {
-    background-color: var(--claro); 
-}
-
-.compras-table form {
-    margin: 0 !important;
-    padding: 0 !important; 
-    border: none !important; 
-    box-shadow: none !important;
-    background: none !important; 
-    display: inline; 
-    max-width: none !important; 
-}
 
 .compras-table form .btn-danger {
     width: auto;
@@ -393,7 +311,6 @@ button:hover {
     background-color: var(--borrar);
     color: white;
     border-radius: 4px;
-    transition: background-color 0.2s;
 }
 
 .compras-table form .btn-compra {
@@ -403,15 +320,10 @@ button:hover {
     background-color: var(--success);
     color: white;
     border-radius: 4px;
-    transition: background-color 0.2s;
-}
-
-.container p {
-    text-align: center;
 }
 
 .buscador-container {
-	display: flex;
+    display: flex;
     justify-content: center;
     gap: 1rem;
     max-width: 800px;
@@ -432,21 +344,6 @@ button:hover {
     color: white;
     border: none;
     text-align: center;
-}
-
-.buscador-volver:hover, .buscador-btn:hover {
-    background-color: var(--secundario);
-    color: var(--primario);
-}
-
-.producto-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-}
-
-.producto-card .btn-primary {
-    width: 100%;
-    padding: 0.75rem;
 }
 
 .error {

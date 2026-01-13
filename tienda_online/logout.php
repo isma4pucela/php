@@ -37,9 +37,9 @@
         <div class="registro-container">
             <h1>Cerrar Sesión</h1>
         
-            <form method="post" action="logout.php">
+            <form method="post" action="logout.php" style="border: 0px;">
                 <input type="hidden" name="confirmar_logout" value="si"> 
-                <button type="submit" class="btn btn-primary" style=margin-top: 20px;">CERRAR SESIÓN</button>
+                <button type="submit" class="btn btn-primary">CERRAR SESIÓN</button>
             </form>
         </div>
     </body>

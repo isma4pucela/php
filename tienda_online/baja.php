@@ -52,9 +52,9 @@
         
             <?php echo $mensaje; ?>          
         
-            <form method="post" action="baja.php">
+            <form method="post" action="baja.php" style="border: 0px;">
                 <input type="hidden" name="confirmar_baja" value="si">
-                <button type="submit" class="btn btn-primary" style="background-color: var(--borrar); margin-top: 20px;">ELIMINAR CUENTA</button>
+                <button type="submit" class="btn btn-primary" style="background-color: var(--borrar);">ELIMINAR CUENTA</button>
             </form>
         </div>
     </body>

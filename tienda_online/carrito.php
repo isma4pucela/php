@@ -13,7 +13,7 @@
 
     $id_usuario = $_SESSION['id_usuario'];
 
-    // Compruebo si se ha enviado el formulario
+    // Compruebo si se ha enviado el formulario de eliminar
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar_compra'])) {
         
         $id_venta = $_POST['id_venta'];
@@ -28,7 +28,7 @@
         }
     }
          
-    // Compruebo si se ha enviado el formulario
+    // Compruebo si se ha enviado el formulario de comprar
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar_compra'])) {
         
         $id_venta = $_POST['id_venta'];
@@ -39,7 +39,31 @@
         if ($mysqli->query($confirmar_compra) === TRUE) {
             $mensaje = "<p>Compra realizada con éxito</p>";
         } else {
-            $mensaje = "<p>Error al procesar la compra: " . $consulta->error . "</p>";
+            $mensaje = "<p>Error al procesar la compra: " . $mysqli->error . "</p>";
+        }
+    }
+
+    // Compruebo si se ha enviado el formulario de vaciar carrito
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['vaciar_carrito'])) {
+        
+        $vaciar_carrito = "DELETE FROM ventas WHERE id_usuario = $id_usuario AND (estado != 'comprado' OR estado IS NULL)";
+        
+        if ($mysqli->query($vaciar_carrito) === TRUE) {
+            $mensaje = "<p>Carrito vaciado.</p>";
+        } else {
+            $mensaje = "<p>Error al vaciar el carrito: " . $mysqli->error . "</p>";
+        }
+    }
+
+    // Compruebo si se ha enviado el formulario
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comprar_carrito'])) {
+        
+        $comprar_carrito = "UPDATE ventas SET estado = 'comprado' WHERE id_usuario = $id_usuario AND (estado != 'comprado' OR estado IS NULL)";
+        
+        if ($mysqli->query($comprar_carrito) === TRUE) {
+            $mensaje = "<p>Compra realizada con éxito</p>";
+        } else {
+            $mensaje = "<p>Error al procesar la compra: " . $mysqli->error . "</p>";
         }
     }
 
@@ -86,14 +110,14 @@
                         <tbody>
                             <?php foreach ($compras as $compra) { ?>
                                 <tr>
-                                    <td><?php echo $compra['producto']; ?></td>
-                                    <td>
+                                    <td style="width: 80%"><?php echo $compra['producto']; ?></td>
+                                    <td style="width: 10%;">
                                         <form method="post" action="carrito.php" style="border: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; display: inline;">
                                             <input type="hidden" name="id_venta" value="<?php echo $compra['id_venta']; ?>">
                                             <button type="submit" name="eliminar_compra" class="btn btn-danger">Eliminar</button>
                                         </form>
                                     </td>
-                                    <td>
+                                    <td style="width: 10%;">
                                         <form method="post" action="carrito.php" style="border: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; display: inline;">
                                             <input type="hidden" name="id_venta" value="<?php echo $compra['id_venta']; ?>">
                                             <button type="submit" name="confirmar_compra" class="btn btn-compra">Comprar</button>
@@ -103,7 +127,24 @@
                             <?php } ?>
                         </tbody>
                     </table>
-
+                    <table class="compras-table">
+                        <tbody>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <form method="post" action="carrito.php" style="border: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; display: inline;">
+                                            <input type="hidden" name="id_venta" value="<?php echo $compra['id_venta']; ?>">
+                                            <button type="submit" name="vaciar_carrito" class="btn btn-danger">Vaciar carrito</button>
+                                        </form>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <form method="post" action="carrito.php" style="border: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; display: inline;">
+                                            <input type="hidden" name="id_venta" value="<?php echo $compra['id_venta']; ?>">
+                                            <button type="submit" name="comprar_carrito" class="btn btn-compra">Comprar carrito</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
                     <br><?php echo $mensaje; ?> 
 
             </div>
