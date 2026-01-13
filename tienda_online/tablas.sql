@@ -7,8 +7,7 @@ CREATE TABLE usuarios (
 CREATE TABLE productos (
     id_producto INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    imagen varchar(100) DEFAULT ,
-    stock INT,
+    imagen VARCHAR(100),
     estado VARCHAR(100)
 );
 
