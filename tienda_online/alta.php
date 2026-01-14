@@ -15,18 +15,7 @@
         if (isset($_POST['email']) && isset($_POST['contraseña'])) {
             $email = $mysqli->real_escape_string($_POST['email']);
             $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
-<<<<<<< HEAD
-            $contraseña_repetida = $mysqli->real_escape_string($_POST['contraseña_repetida']);
 
-            // Compruebo que las contraseñas coincidan
-            if ($contraseña !== $contraseña_repetida) {
-                $mensaje = "<p>Las contraseñas no coinciden.</p>";
-            } else {
-
-                // Cifro la contraseña
-                $contraseña_cifrada = password_hash($contraseña, PASSWORD_DEFAULT);
-            
-=======
             $confirmar_contraseña = $mysqli->real_escape_string($_POST['confirmar_contraseña']);
 
             if ($confirmar_contraseña !== $contraseña) {
@@ -35,7 +24,6 @@
                 // Cifro la contraseña
                 $contraseña_cifrada = password_hash($contraseña, PASSWORD_DEFAULT);
         
->>>>>>> df3e582d6730d4f4db95410ca8b425f7e46f65ff
                 // Compruebo si el email ya está registrado
                 $registrado = $mysqli->query("SELECT email FROM usuarios WHERE email = '$email'");
             
@@ -64,12 +52,10 @@
                     }
                 }
             }
-<<<<<<< HEAD
-        
+            
         } else {
              $mensaje = "<p>Por favor, introduce el correo y la contraseña.</p>";
-=======
->>>>>>> df3e582d6730d4f4db95410ca8b425f7e46f65ff
+
         }
     
     }
