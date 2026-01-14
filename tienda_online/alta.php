@@ -15,6 +15,7 @@
         if (isset($_POST['email']) && isset($_POST['contraseña'])) {
             $email = $mysqli->real_escape_string($_POST['email']);
             $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
+<<<<<<< HEAD
             $contraseña_repetida = $mysqli->real_escape_string($_POST['contraseña_repetida']);
 
             // Compruebo que las contraseñas coincidan
@@ -25,6 +26,16 @@
                 // Cifro la contraseña
                 $contraseña_cifrada = password_hash($contraseña, PASSWORD_DEFAULT);
             
+=======
+            $confirmar_contraseña = $mysqli->real_escape_string($_POST['confirmar_contraseña']);
+
+            if ($confirmar_contraseña !== $contraseña) {
+                $mensaje = "Las contraseñas no coinciden";
+            } else {
+                // Cifro la contraseña
+                $contraseña_cifrada = password_hash($contraseña, PASSWORD_DEFAULT);
+        
+>>>>>>> df3e582d6730d4f4db95410ca8b425f7e46f65ff
                 // Compruebo si el email ya está registrado
                 $registrado = $mysqli->query("SELECT email FROM usuarios WHERE email = '$email'");
             
@@ -53,12 +64,16 @@
                     }
                 }
             }
+<<<<<<< HEAD
         
         } else {
              $mensaje = "<p>Por favor, introduce el correo y la contraseña.</p>";
+=======
+>>>>>>> df3e582d6730d4f4db95410ca8b425f7e46f65ff
         }
-    }
     
+    }
+            
     // Cerramos la conexión a la base de datos
     $mysqli->close();
 ?>
@@ -90,8 +105,13 @@
                 </div>
 
                 <div class="form-group">
+<<<<<<< HEAD
                     <label for="password">Repite la contraseña:</label>
                     <input type="password" id="password" name="contraseña_repetida" required>
+=======
+                    <label for="password">Confirmar contraseña:</label>
+                    <input type="password" id="password" name="confirmar_contraseña" required>
+>>>>>>> df3e582d6730d4f4db95410ca8b425f7e46f65ff
                 </div>
 
                 <button type="submit" class="btn btn-primary">Registrarse</button>
