@@ -15,37 +15,45 @@
         if (isset($_POST['email']) && isset($_POST['contraseña'])) {
             $email = $mysqli->real_escape_string($_POST['email']);
             $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
-            
-            // Cifro la contraseña
-            $contraseña_cifrada = password_hash($contraseña, PASSWORD_DEFAULT);
-        
-            // Compruebo si el email ya está registrado
-            $registrado = $mysqli->query("SELECT email FROM usuarios WHERE email = '$email'");
-            
-            // Si el email ya existe, muestro un mensaje de error
-            if ($registrado->num_rows > 0) {
-                $mensaje = "<p>$email ya está registrado</p>";
+            $contraseña_repetida = $mysqli->real_escape_string($_POST['contraseña_repetida']);
+
+            // Compruebo que las contraseñas coincidan
+            if ($contraseña !== $contraseña_repetida) {
+                $mensaje = "<p>Las contraseñas no coinciden.</p>";
             } else {
-                
-                $cuenta = $mysqli->query("INSERT INTO usuarios (email, contrasena) VALUES ('$email', '$contraseña_cifrada')");
 
-                if ($cuenta === TRUE) {
-                    
-                    // Obtengo el ID del nuevo usuario
-                    $id_nuevo_usuario = $mysqli->insert_id;
-
-                    // Inicio la sesión con el nuevo ID y el email
-                    $_SESSION['id_usuario'] = $id_nuevo_usuario;
-                    $_SESSION['email'] = $email;
-                    
-                    // Redirijo al usuario a la página de inicio
-                    header("Location: inicio.php");
-                    exit();
-                    
+                // Cifro la contraseña
+                $contraseña_cifrada = password_hash($contraseña, PASSWORD_DEFAULT);
+            
+                // Compruebo si el email ya está registrado
+                $registrado = $mysqli->query("SELECT email FROM usuarios WHERE email = '$email'");
+            
+                // Si el email ya existe, muestro un mensaje de error
+                if ($registrado->num_rows > 0) {
+                    $mensaje = "<p>$email ya está registrado</p>";
                 } else {
-                    $mensaje = "<p>Error al registrar el usuario: " . $mysqli->error . "</p>";
+                
+                    $cuenta = $mysqli->query("INSERT INTO usuarios (email, contrasena) VALUES ('$email', '$contraseña_cifrada')");
+
+                    if ($cuenta === TRUE) {
+                    
+                        // Obtengo el ID del nuevo usuario
+                        $id_nuevo_usuario = $mysqli->insert_id;
+
+                        // Inicio la sesión con el nuevo ID y el email
+                        $_SESSION['id_usuario'] = $id_nuevo_usuario;
+                        $_SESSION['email'] = $email;
+                    
+                        // Redirijo al usuario a la página de inicio
+                        header("Location: inicio.php");
+                        exit();
+                    
+                    } else {
+                        $mensaje = "<p>Error al registrar el usuario: " . $mysqli->error . "</p>";
+                    }
                 }
             }
+        
         } else {
              $mensaje = "<p>Por favor, introduce el correo y la contraseña.</p>";
         }
@@ -79,6 +87,11 @@
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
                     <input type="password" id="password" name="contraseña" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Repite la contraseña:</label>
+                    <input type="password" id="password" name="contraseña_repetida" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Registrarse</button>
