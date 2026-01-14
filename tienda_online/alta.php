@@ -15,7 +15,6 @@
         if (isset($_POST['email']) && isset($_POST['contraseña'])) {
             $email = $mysqli->real_escape_string($_POST['email']);
             $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
-
             $confirmar_contraseña = $mysqli->real_escape_string($_POST['confirmar_contraseña']);
 
             if ($confirmar_contraseña !== $contraseña) {
@@ -52,7 +51,7 @@
                     }
                 }
             }
-            
+
         } else {
              $mensaje = "<p>Por favor, introduce el correo y la contraseña.</p>";
 
@@ -91,13 +90,9 @@
                 </div>
 
                 <div class="form-group">
-<<<<<<< HEAD
-                    <label for="password">Repite la contraseña:</label>
-                    <input type="password" id="password" name="contraseña_repetida" required>
-=======
-                    <label for="password">Confirmar contraseña:</label>
+                    <label for="password">Confirma la contraseña:</label>
                     <input type="password" id="password" name="confirmar_contraseña" required>
->>>>>>> df3e582d6730d4f4db95410ca8b425f7e46f65ff
+
                 </div>
 
                 <button type="submit" class="btn btn-primary">Registrarse</button>
