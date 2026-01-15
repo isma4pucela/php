@@ -15,8 +15,7 @@
             $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
         
             // Compruebo las credenciales del usuario
-            $select = "SELECT id_usuario, email, contrasena FROM usuarios WHERE email = '$email'";
-            $sesion = $mysqli->query($select);
+            $sesion = $mysqli->query("SELECT id_usuario, email, contrasena FROM usuarios WHERE email = '$email'");
 
             // Compruebo si el usuario existe
             if ($sesion && $fila = $sesion->fetch_assoc()) {
