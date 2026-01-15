@@ -221,7 +221,7 @@ button {
 
 .producto-card {
     background: var(--fondo);
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
     border: 1px solid var(--borde);
     width: 300px; 

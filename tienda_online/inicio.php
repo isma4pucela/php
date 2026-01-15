@@ -38,7 +38,7 @@
     
     // Verifico si se envió el formulario
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['buscar'])) {
-        $busqueda = $mysqli->real_escape_string($_POST['buscar']);
+        $busqueda = $_POST['buscar'];
     }
 
     // Consulta base
@@ -82,15 +82,7 @@
         
         
         <form action="inicio.php" method="POST" class="buscador-container">
-            
-            <input 
-                type="text" 
-                name="buscar" 
-                class="buscador-input" 
-                placeholder="Buscar por nombre..." 
-                value="<?php echo htmlspecialchars($busqueda); ?>"
-            >
-            
+            <input type="text" name="buscar" class="buscador-input" placeholder="Buscar por nombre" value="<?php echo htmlspecialchars($busqueda); ?>">
             <button class="buscador-btn" type="submit">Buscar</button>
         </form>
 
